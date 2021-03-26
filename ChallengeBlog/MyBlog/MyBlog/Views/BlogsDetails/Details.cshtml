@@ -20,37 +20,19 @@
 
         @if (Model != null)
 
+         {
 
-        {
 
+            <table class=" table table-bordered table-striped style=" background-color:grey"">
 
-        <table class=" table table-bordered table-striped style=" background-color:grey"">
-            @*   <thead>
-            <tr>
-
-                <td>@Html.DisplayNameFor(b => b.Id)</td>
-                <td>@Html.DisplayNameFor(b => b.Title)</td>
-                <td>@Html.DisplayNameFor(b => b.Contents )</td>
-                <td>@Html.DisplayNameFor(b => b.CategoryName)</td>
-                <td>@Html.DisplayNameFor(b => b.Picture)</td>
-                <td>@Html.DisplayNameFor(b => b.CreationDate)</td>
-                <td>Acciones</td>
-
-            </tr>
-
-        </thead>*@
-            <tbody>
-
-                @*@foreach (var item in Model)
-
-                {*@
-
+                <tbody>
                     <tr>
                         <td>@Model.Id</td>
                         <td>@Model.Title</td>
                         <td>@Model.Contents</td>
                         <td>@Model.CategoryName</td>
-                        <td>@Model.Picture</td>
+                        <td> <img src="~/BlogsDetails/Picture?id=@Model.Id" width="130" height="80" alt="Image" /></td>
+
                         <td>@Model.CreationDate</td>
                         <td>
                             <a asp-controller="BlogsDetails" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
@@ -62,20 +44,23 @@
 
                     </tr>
 
-                @*}*@
+
+                </tbody>
+
+            </table>
+
+         }
+         else
+
+         {
+
+            <p>no se encontro detalle del blog solicitado</p>
+         }
 
 
-            </tbody>
-
-        </table>
-
-        }else
-
-            {
-
-             <p>no se encontro detalle del blog solicitado</p>
-            }
-
+        <div>
+            <a class="btn-default " asp-action="Index">Volver a Inicio</a>
+        </div>
 
 
     </div>

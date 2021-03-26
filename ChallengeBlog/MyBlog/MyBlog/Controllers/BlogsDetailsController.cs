@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyBlog.Models;
 using System.Web;
 using Microsoft.EntityFrameworkCore;
+using EntityFramework.DynamicFilters;
 
 namespace MyBlog.Controllers
 {
@@ -22,12 +23,25 @@ namespace MyBlog.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<BlogDetails> listBlogs = _context.BlogDetails.OrderByDescending(b => b.CreationDate);
+          
+
+            IEnumerable<BlogDetails> listBlogs = _context.BlogDetails.Where(b => b.IsDeleted == false).OrderByDescending(b => b.CreationDate) ;
+
+           
 
             return View(listBlogs);
         }
 
-
+        public ActionResult Picture(int id)
+        {
+            var post = _context.BlogDetails.Find(id);
+            var fileToRetrieve = post.Picture;
+            if (fileToRetrieve is null)
+            {
+                return Ok();
+            }
+            return File(fileToRetrieve, "image/jpeg");
+        }
 
         public IActionResult Details(int Id)
         {
@@ -137,9 +151,9 @@ namespace MyBlog.Controllers
 
                 return NotFound();
             }
-           
-            
-            _context.BlogDetails.Remove(unBlog);
+
+            unBlog.IsDeleted = true;
+            _context.BlogDetails.Update(unBlog);
             _context.SaveChanges();
 
             return Redirect("~/BlogsDetails/Index");
