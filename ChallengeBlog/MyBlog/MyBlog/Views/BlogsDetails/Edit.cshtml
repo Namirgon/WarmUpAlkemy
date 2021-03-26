@@ -1,0 +1,66 @@
+﻿@model MyBlog.Models.BlogDetails
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="row">
+    <div class="col-sm-12 ">
+        <h2>Editar Blog</h2>
+    </div>
+ </div>
+
+       
+
+        <hr />
+        <div class="row" >
+           
+
+            <div class="col-sm-10" style="background-color:gray">
+                <br />
+                <br />
+                <form asp-action="Edit" method="post"  enctype="multipart/form-data">
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contents" class="control-label"></label>
+                        <input asp-for="Contents" class="form-control" />
+                        <span asp-validation-for="Contents" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CategoryName" class="control-label"></label>
+                        <input asp-for="CategoryName" class="form-control" />
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Picture" class="control-label"></label>
+                        <input type="file" id="files" asp-for="Picture" />
+                        <span asp-validation-for="Picture" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreationDate" class="control-label"></label>
+                        <input asp-for="CreationDate" class="form-control" />
+                        <span asp-validation-for="CreationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class=" btn-default btn-primary btn-lg " />
+                    </div>
+                </form>
+            </div>
+        </div>
+<br />
+<br />
+
+        <div>
+            <a class="btn-default " asp-action="Index">Volver a Inicio</a>
+        </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

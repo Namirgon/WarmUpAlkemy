@@ -1,0 +1,82 @@
+﻿@model MyBlog.Models.BlogDetails
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Detalle</h3>
+
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        @if (Model != null)
+
+
+        {
+
+
+        <table class=" table table-bordered table-striped style=" background-color:grey"">
+            @*   <thead>
+            <tr>
+
+                <td>@Html.DisplayNameFor(b => b.Id)</td>
+                <td>@Html.DisplayNameFor(b => b.Title)</td>
+                <td>@Html.DisplayNameFor(b => b.Contents )</td>
+                <td>@Html.DisplayNameFor(b => b.CategoryName)</td>
+                <td>@Html.DisplayNameFor(b => b.Picture)</td>
+                <td>@Html.DisplayNameFor(b => b.CreationDate)</td>
+                <td>Acciones</td>
+
+            </tr>
+
+        </thead>*@
+            <tbody>
+
+                @*@foreach (var item in Model)
+
+                {*@
+
+                    <tr>
+                        <td>@Model.Id</td>
+                        <td>@Model.Title</td>
+                        <td>@Model.Contents</td>
+                        <td>@Model.CategoryName</td>
+                        <td>@Model.Picture</td>
+                        <td>@Model.CreationDate</td>
+                        <td>
+                            <a asp-controller="BlogsDetails" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+                            <br />
+                            <br />
+                            <a asp-controller="BlogsDetails" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary">Borrar</a>
+
+                        </td>
+
+                    </tr>
+
+                @*}*@
+
+
+            </tbody>
+
+        </table>
+
+        }else
+
+            {
+
+             <p>no se encontro detalle del blog solicitado</p>
+            }
+
+
+
+    </div>
+</div>
